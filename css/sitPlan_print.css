@@ -1,0 +1,223 @@
+
+@media print {  /** printing **/	
+
+	@page { /** printing **/
+		size: A4;
+		size: landscape;
+		margin: 0;     
+           border: initial;
+           border-radius: initial;
+           width: initial;
+           min-height: initial;
+           box-shadow: initial;
+           background: initial;
+           page-break-after: always;
+	}
+	
+    html, body {
+        width: 210mm;
+        height: 297mm;        
+    }
+	.noPrint {
+		display: none;
+		
+	}
+
+table#studentsTable, table#arrivalsTable, table#dhammaSeatTable { /** id hardcoded in sp_tab.js */
+	width:90%;
+	border-collapse:separate;
+	border-spacing: 2px;
+	table-layout: fixed;
+}
+
+
+#studentsTable td.normal {
+    height: inherit !important;
+    border: 1px solid gray;
+    background-color: orange; 
+    padding: 0px;
+}	
+
+#lettersTable td.letters {
+    height: inherit !important;	
+	border: 1px solid gray;
+    background-color: blue; 
+    padding: 0px;
+}	
+
+#dhammaSeatTable td.numbers{ 
+	width:95%;
+	border-collapse:separate;
+	border-spacing: 2px;
+    background-color: blue; 
+	border: 1px solid black;
+}
+
+#dhammaSeatTable td.numbers{ 
+	width:95%;
+	border-collapse:separate;
+	border-spacing: 2px;
+    background-color: blue; 
+	border: 1px solid black;
+}
+
+#dhammaSeatTable td.dhamma_seat{
+	color: black; 
+    padding: 10px;
+    margin: 10px;
+	border-collapse:separate;
+	background-color: white;
+	border-radius: 4px;
+	border: 5px solid black;
+}
+
+
+/* make drag container visible */
+#redips-drag {
+	display: table;
+	float: left;
+}
+
+/* tables */
+div#redips-drag table {
+	margin: 0px;
+	font-size: 20pt;
+	text-align: center;
+	border-radius: 4px; /* Opera, Chrome */
+}
+
+/* table cells */
+div#redips-drag td {
+	border-radius: 4px; /* Opera, Chrome */
+	
+	border: 0px solid navy;
+	height: 1px;
+	padding: 0px;
+}
+
+/* DIV elements */
+.redips-drag {
+	margin: auto;
+	margin-bottom: 0px;
+	margin-top: 0px;
+	font-size: 12pt;
+	text-align: left;
+	/*line-height: 40px;*/
+	/* background-color: white; */
+	/* round corners */
+	border-radius: 4px; /* Opera, Chrome */
+	-moz-border-radius: 4px; /* FF */
+	/*  background-color: #CDE1F2; */
+	/* border: 1px solid SteelBlue; */
+}
+
+
+#venue_name{
+	font-size: 20px;
+}
+
+#start_date{
+	font-size: 14px;
+}
+#end_date{
+	font-size: 14px;
+}
+
+#gender{
+	text-align:center;
+	font-size: 20px;
+}
+
+
+body {
+	font-family: arial;
+	margin: 10px;
+}
+
+td .user_info{
+	background: #f9ef93;
+	display:block;
+	text-align:center;
+	margin:0 auto;
+}
+
+.main-container {
+	width: 90%; 
+	max-width: 1048px;
+	display:flex; 
+	justify-content: space-between;
+	background: #E3FFD2;
+}
+
+
+table.legend{
+	border: 0px solid black;
+}
+
+/* styles applied on method sp_tab.js->cellContent()*/
+.given_name{
+	font-size: 20pt;
+}
+
+.family_name{
+	font-size: 14pt;
+}
+
+.age{
+	font-size: 14pt;
+	float:  right;
+	
+}
+
+.big_sitserved{
+	float:  right;
+}
+
+.sitserved{
+  width: 100%;
+}
+
+/* end */
+
+.old_std{
+	border: 1px dashed black;
+	padding: 1px;
+	background:  #FFFFFF ;
+}
+
+.new_std{
+	border: 1px dotted black;
+	padding: 1px;
+	background:  #FFFFFF;
+
+}
+
+.no_std{
+	border: 2px dotted black;
+		padding: 3px;
+
+	background:  #FFFFFF;
+
+}
+
+
+.joined{ /* student joined course after map was saved and now reloaded*/
+	border: 3px solid pink;
+}
+
+
+/* green objects */
+.green {
+	border: 2px solid #499B33;
+}
+
+/* orange objects */
+.orange {
+	border: 12px solid #BF6A30;
+}
+
+
+
+
+
+}
