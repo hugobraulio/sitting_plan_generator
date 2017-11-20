@@ -166,7 +166,7 @@ function bindEvents(layout){
 	$("input:radio[name=drop_option]").click(function(e){ layout.drop_option = e.currentTarget.value; redips.init() }); 
 	$("#button_save").on("click",function(e){ layout.save_to_CALM(); } );  
 	$("#button_reset").on("click",function(e){ layout.reset_all_positions(); } );  
-	$("#button_print").on("click", view.buttonPrint);  
+	$("#button_print").on("click", function(e){ layout.save_to_CALM(); view.buttonPrint();} );
 	$("#button_find_updates").on("click",view.buttonFindUpdates);  
 	$("#button_add_row").on("click",view.buttonAddRow); 
 }
@@ -219,11 +219,10 @@ document.body.appendChild(screenBlock);
 chrome.runtime.getBackgroundPage(function(backgroundPage) {
 	calm_tabId = backgroundPage.calm_tabId;
 	url_download_json = backgroundPage.url_download_json;//Download students JSON from CALM
-	url_POST_seat_map = backgroundPage.url_POST_seat_map; //Upload seating map to CALM
-	url_course        = backgroundPage.url_course; //Upload seating map to CALM
+	url_POST_seat_map = backgroundPage.url_POST_seat_map; //Upload sitting map to CALM
+	url_course        = backgroundPage.url_course; //Upload sitting map to CALM
 	//console.log("getStudentsJSON: " + url_POST_seat_map);
-	
-	
+
 	getStudentsJSON(url_download_json);  //sort of init
 	
 });
