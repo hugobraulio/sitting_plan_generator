@@ -71,20 +71,24 @@ function getStudentsJSON(url_download_json){
 			//HERE default gender will be always 'male' (unless CALM tracks the real gender assigned to the AT. Beware a male AT can conduct only female, only male or both. Same for female AT)
 			form_data = getFormData(); //get defaut values from html form
 			
+				/* BORRADO POR HUGO
 				//TODO: Preparar el json para parecer que CALM si que nos esta enviando el numero de columnas.
 				//TODO BORRAR esta linea en cuanto CALM nos envie https://mail.google.com/mail/u/0/#search/number_of_columns/15eaf12423e2e1f8
 				form_data.ncols = getLastNumberOfColumns(course_json, form_data.gender) || form_data.ncols;
+				*/
 			
 			//If 'number_of_columns' exist in course_json (from a previous session), use it instead of form_data.ncols
-			course_json.sitting.male.number_of_columns = course_json.sitting.male.number_of_columns || form_data.ncols; 
-			course_json.sitting.female.number_of_columns = course_json.sitting.female.number_of_columns  || form_data.ncols; 
-			
+            course_json.hall_config.male.number_of_columns = course_json.hall_config.male.number_of_columns || form_data.ncols;
+            course_json.hall_config.male.number_of_rows = course_json.hall_config.male.number_of_rows || form_data.nrows;
+            course_json.hall_config.female.number_of_columns = course_json.hall_config.female.number_of_columns || form_data.ncols;
+            course_json.hall_config.female.number_of_rows = course_json.hall_config.female.number_of_rows || form_data.nrows;
+
 			hall = new Hall(course_json);
 			layout = new Layout(hall, form_data.gender, "studentsTable", entry_points, url_course); //"studentsTable" must correlate name in sitPlan.css
 			layout.render();
 			
 			//Before binding events for the first time, lets populate form controls (so far, only ncols) with the values comming from CALM (from a previous version.. If any)
-			var ncols        = course_json.sitting[form_data.gender].number_of_columns || form_data.ncols;  //TODO remove "|| form_data" when number_of_colums is implemented by CALM (not yet 1 Oct 2017)
+			var ncols        = course_json.hall_config[form_data.gender].number_of_columns || form_data.ncols;  //TODO remove "|| form_data" when number_of_colums is implemented by CALM (not yet 1 Oct 2017)
 			$("#" + ncols + "col").attr('checked', true);
 			bindEvents(layout);
 			
@@ -118,29 +122,29 @@ function getLastNumberOfColumns(j, gender){
 	var foundB2 = false;
 	var i = 0;
 	while(!foundB2 && i < v.length){
-		var b2 = v[i].generated_hall_position;
+		var b2 = v[i].hall_position;
 		if (b2.substr(0,2) === "B2"){
 			foundB2 = true;
-			j.sitting.male.number_of_columns = b2.substr(3,1); //extract the number of columns
-			v[i].generated_hall_position = "B2"; //put things back to 'normal'
+			j.hall_config.male.number_of_columns = b2.substr(3,1); //extract the number of columns
+			v[i].hall_position = "B2"; //put things back to 'normal'
 		}
 		i++;
 	}
 	
 	//FEMALE
-	 v = j.sitting.female.old.concat(j.sitting.female.new);
+	 v = j.hall_config.female.old.concat(j.sitting.female.new);
 	foundB2 = false;
 	 i = 0;
 	while(!foundB2 && i < v.length){
-		var b2 = v[i].generated_hall_position;
+		var b2 = v[i].hall_position;
 		if (b2.substr(0,2) === "B2"){
 			foundB2 = true;
-			j.sitting.female.number_of_columns = b2.substr(3,1); //extract the number of columns
-			v[i].generated_hall_position = "B2"; //put things back to 'normal'
+			j.hall_config.female.number_of_columns = b2.substr(3,1); //extract the number of columns
+			v[i].hall_position = "B2"; //put things back to 'normal'
 		}
 		i++;
 	}
-	return j.sitting[gender].number_of_columns;
+	return j.hall_config[gender].number_of_columns;
 }
 
 /** Dinamically assign HTML events to radio buttons (will help when migrating the code to Chrome-Extension)
