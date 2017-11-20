@@ -11,7 +11,7 @@
   },
   "content_scripts": [
     { "run_at": "document_end",
-      "matches": ["https://calm.dhamma.org/*/course_applications", "https://test.calm.dhamma.org/*/course_applications"],
+      "matches": ["https://calm.dhamma.org/*/course_applications", "https://test.calm.dhamma.org/*/course_applications", "http://localhost:3000/*/course_applications"],
       "js": ["lib/jquery-3.1.1.js", "lib/redips-drag-source.js", "content.js"]
     }
   ],
